@@ -5,7 +5,8 @@ import {
 } from 'react-redux';
 import {
     createStore,
-    applyMiddleware
+    applyMiddleware,
+    combineReducers
 } from 'redux';
 import {
     createLogger
@@ -15,17 +16,22 @@ import './index.css';
 import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 import {
-    searchRobots
+    searchRobots,
+    requestRobots
 } from './reducers';
 import 'tachyons';
 
 
 const logger = createLogger();
-const store = createStore(searchRobots, applyMiddleware(thunkMiddleware, logger))
+const rootReducer = combineReducers({
+    searchRobots,
+    requestRobots
+})
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger))
 
-ReactDOM.render < Provider store = {
-        store
-    } >
-    <
-    App / > < /Provider>, document.getElementById('root');
-registerServiceWorker();
+ReactDOM.render( < Provider store = {
+            store
+        } >
+        <
+        App / > < /Provider>, document.getElementById('root'));
+        registerServiceWorker();
