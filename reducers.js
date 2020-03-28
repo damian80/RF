@@ -21,7 +21,7 @@ export const searchRobots = (state = intialStateSearch, action = {}) => {
     }
 }
 
-const intialStaterobots = {
+const intialStateRobots = {
     isPending: false,
     robots: [],
     error: ''
